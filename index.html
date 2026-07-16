@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الأستاذ حسام رزاقي للرياضيات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        body { font-family: 'Cairo', sans-serif; }
+        .hidden-section { display: none; }
+    </style>
+</head>
+<body class="bg-slate-900 text-gray-100 min-h-screen flex flex-col justify-between">
+
+    <!-- ================= 1. واجهة الدخول وإنشاء الحساب ================= -->
+    <div id="auth-section" class="max-w-md w-full mx-auto my-auto p-6 bg-slate-800 rounded-2xl shadow-xl border border-slate-700 m-4">
+        <div class="text-center mb-8">
+            <i class="fa-solid fa-calculator text-5xl text-indigo-500 mb-2"></i>
+            <h2 class="text-2xl font-bold">الأستاذ حسام رزاقي</h2>
+            <p class="text-gray-400 text-sm">منصة رياضيات الطور المتوسط</p>
+        </div>
+
+        <!-- أزرار الاختيار الأساسية -->
+        <div class="flex bg-slate-950 p-1 rounded-xl mb-6">
+            <button onclick="toggleAuthMode('login')" id="btn-tab-login" class="w-1/2 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white transition">الدخول إلى حسابي</button>
+            <button onclick="toggleAuthMode('register')" id="btn-tab-register" class="w-1/2 py-2 rounded-lg text-sm font-semibold text-gray-400 hover:text-white transition">إنشاء حساب جديد</button>
+        </div>
+
+        <!-- نموذج تسجيل الدخول -->
+        <form id="login-form" class="space-y-4" onsubmit="handleLogin(event)">
+            <div>
+                <label class="block text-xs text-gray-400 mb-1">البريد الإلكتروني</label>
+                <input type="email" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
+            </div>
+            <div>
+                <label class="block text-xs text-gray-400 mb-1">كلمة المرور</label>
+                <input type="password" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
+            </div>
+            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 py-2.5 rounded-lg text-sm font-bold transition">دخول</button>
+        </form>
+
+        <!-- نموذج إنشاء حساب جديد -->
+        <form id="register-form" class="space-y-4 hidden-section" onsubmit="handleRegister(event)">
+            <div>
+                <label class="block text-xs text-gray-400 mb-1">الاسم واللقب</label>
+                <input type="text" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
+            </div>
+            <div>
+                <label class="block text-xs text-gray-400 mb-1">البريد الإلكتروني</label>
+                <input type="email" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
+            </div>
+            <div>
+                <label class="block text-xs text-gray-400 mb-1">كلمة المرور</label>
+                <input type="password" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
+            </div>
+            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 py-2.5 rounded-lg text-sm font-bold transition">إنشاء الحساب</button>
+        </form>
+    </div>
+
+
+    <!-- ================= 2. واجهة تحميل وتثبيت التطبيق ================= -->
+    <div id="download-section" class="hidden-section max-w-md w-full mx-auto my-auto p-6 bg-slate-800 rounded-2xl shadow-xl border border-slate-700 text-center m-4">
+        <i class="fa-brands fa-android text-6xl text-emerald-500 mb-4 animate-bounce"></i>
+        <h3 class="text-xl font-bold mb-2">تم إنشاء حسابك بنجاح يا بطل!</h3>
+        <p class="text-gray-400 text-sm mb-6">لكي تبدأ الدراسة مع الأستاذ حسام، يرجى تثبيت التطبيق الرسمي الخاص بالمنصة على هاتفك أولاً.</p>
+        
+        <button onclick="simulateInstall()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold flex items-center justify-center space-x-2 space-x-reverse transition mb-3">
+            <i class="fa-solid fa-download"></i>
+            <span>تثبيت التطبيق على الهاتف</span>
+        </button>
+    </div>
+
+
+    <!-- ================= 3. واجهة الحساب غير المفعل (شاشة الانتظار) ================= -->
+    <div id="pending-section" class="hidden-section max-w-md w-full mx-auto my-auto p-6 bg-slate-800 rounded-2xl shadow-xl border border-slate-700 text-center m-4">
+        <i class="fa-solid fa-user-lock text-5xl text-amber-500 mb-4"></i>
+        <h3 class="text-xl font-bold mb-2">حسابك في انتظار التفعيل</h3>
+        <p class="text-gray-400 text-sm mb-6">مرحباً بك! لقد قمت بتثبيت التطبيق بنجاح. لكن حسابك يحتاج إلى تفعيل من طرف الإدارة لكي تتمكن من استخدام دردشة الأستاذ حسام الذكية.</p>
+        
+        <!-- رابط الواتساب برقمك مباشرة ورسالة مجهزة مسبقاً -->
+        <a href="https://wa.me/213561150865?text=مرحبا%20أستاذ%20حسام،%20لقد%20سجلت%20في%20المنصة%20وأريد%20تفعيل%20حسابي" target="_blank" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold flex items-center justify-center space-x-2 space-x-reverse transition">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span>تواصل مع الإدارة من أجل تفعيل حسابك</span>
+        </a>
+    </div>
+
+
+    <!-- ================= 4. واجهة الدردشة بعد التفعيل ================= -->
+    <div id="chat-interface" class="hidden-section flex-1 flex flex-col max-w-2xl w-full mx-auto bg-slate-800 shadow-xl border-x border-slate-700 h-screen">
+        <!-- شريط علوي يحتوي على عدد الأيام المتبقية -->
+        <div class="bg-slate-900 p-4 border-b border-slate-700 flex justify-between items-center">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <i class="fa-solid fa-circle-user text-3xl text-indigo-500"></i>
+                <div>
+                    <h4 class="font-bold text-sm">الأستاذ حسام رزاقي (ذكاء اصطناعي)</h4>
+                    <span class="text-xs text-green-400 flex items-center"><span class="h-2 w-2 rounded-full bg-green-500 inline-block ml-1"></span>متصل الآن</span>
+                </div>
+            </div>
+            <!-- عداد الأيام المتبقية للاشتراك -->
+            <div class="bg-indigo-950 text-indigo-400 px-3 py-1 rounded-full text-xs font-semibold border border-indigo-800">
+                <i class="fa-solid fa-clock ml-1"></i> المتبقي: <span id="days-count">15</span> يوم
+            </div>
+        </div>
+
+        <!-- منطقة الرسائل -->
+        <div id="chat-container" class="flex-1 p-4 overflow-y-auto space-y-4">
+            <div class="bg-slate-750 p-3 rounded-xl text-sm text-gray-300 max-w-[85%] border border-slate-700">
+                مرحباً بك يا بطل! أنا الأستاذ حسام رزاقي. أرسل لي تمرينك في الرياضيات الآن وسأعطيك حلاً نموذجياً مفصلاً وفق المنهاج الجزائري! 📐✏️
+            </div>
+        </div>
+
+        <!-- منطقة الإدخال -->
+        <div class="p-4 bg-slate-900 border-t border-slate-700 flex items-center space-x-2 space-x-reverse">
+            <input type="text" id="message-input" placeholder="اكتب سؤالك هنا..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500">
+            <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 p-3 rounded-xl transition text-white">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ================= 5. واجهة انتهاء الصلاحية وتوقف الدردشة ================= -->
+    <div id="expired-section" class="hidden-section max-w-md w-full mx-auto my-auto p-6 bg-slate-800 rounded-2xl shadow-xl border border-slate-700 text-center m-4">
+        <i class="fa-solid fa-triangle-exclamation text-5xl text-red-500 mb-4"></i>
+        <h3 class="text-xl font-bold mb-2">انتهت فترة اشتراكك!</h3>
+        <p class="text-gray-400 text-sm mb-6">لقد انتهت فترة تفعيل حسابك في منصة الرياضيات. يرجى التواصل مع الأستاذ حسام لتجديد الاشتراك ومواصلة الدراسة.</p>
+        
+        <a href="https://wa.me/213561150865?text=مرحبا%20أستاذ%20حسام،%20انتهى%20اشتراكي%20في%20المنصة%20وأريد%20تجديده" target="_blank" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold flex items-center justify-center space-x-2 space-x-reverse transition">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span>تواصل مع الأستاذ لتجديد الاشتراك</span>
+        </a>
+    </div>
+
+    <!-- كود إدارة التفاعلات والتنقل بين الواجهات -->
+    <script>
+        // التبديل بين نموذج الدخول ونموذج التسجيل
+        function toggleAuthMode(mode) {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const btnLogin = document.getElementById('btn-tab-login');
+            const btnRegister = document.getElementById('btn-tab-register');
+
+            if (mode === 'login') {
+                loginForm.classList.remove('hidden-section');
+                registerForm.classList.add('hidden-section');
+                btnLogin.className = "w-1/2 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white transition";
+                btnRegister.className = "w-1/2 py-2 rounded-lg text-sm font-semibold text-gray-400 hover:text-white transition";
+            } else {
+                loginForm.classList.add('hidden-section');
+                registerForm.classList.remove('hidden-section');
+                btnLogin.className = "w-1/2 py-2 rounded-lg text-sm font-semibold text-gray-400 hover:text-white transition";
+                btnRegister.className = "w-1/2 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white transition";
+            }
+        }
+
+        // عند إرسال نموذج إنشاء حساب جديد
+        function handleRegister(e) {
+            e.preventDefault();
+            document.getElementById('auth-section').classList.add('hidden-section');
+            document.getElementById('download-section').classList.remove('hidden-section');
+        }
+
+        // عند تثبيت التطبيق
+        function simulateInstall() {
+            document.getElementById('download-section').classList.add('hidden-section');
+            // نوجهه لشاشة الانتظار لأن الحساب غير مفعل من طرف الأستاذ حسام بعد
+            document.getElementById('pending-section').classList.remove('hidden-section');
+        }
+
+        // محاكاة تسجيل الدخول (لفحص التفعيل والأيام المتبقية)
+        function handleLogin(e) {
+            e.preventDefault();
+            document.getElementById('auth-section').classList.add('hidden-section');
+            
+            // محاكاة لحالة تفعيل الحساب: 
+            // غير مفعل = pending-section
+            // مفعل والاشتراك ساري = chat-interface
+            // منتهي الصلاحية = expired-section
+            
+            let accountStatus = "active"; // "pending", "active", "expired"
+            let daysRemaining = 12; // الأيام المتبقية
+
+            if (accountStatus === "pending") {
+                document.getElementById('pending-section').classList.remove('hidden-section');
+            } else if (accountStatus === "active") {
+                if (daysRemaining <= 0) {
+                    document.getElementById('expired-section').classList.remove('hidden-section');
+                } else {
+                    document.getElementById('days-count').innerText = daysRemaining;
+                    document.getElementById('chat-interface').classList.remove('hidden-section');
+                }
+            } else {
+                document.getElementById('expired-section').classList.remove('hidden-section');
+            }
+        }
+
+        // إرسال رسالة في الدردشة
+        function sendMessage() {
+            const input = document.getElementById('message-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const container = document.getElementById('chat-container');
+            
+            // رسالة التلميذ
+            const userMsg = document.createElement('div');
+            userMsg.className = "bg-indigo-600 p-3 rounded-xl text-sm text-white max-w-[85%] self-end ml-auto";
+            userMsg.innerText = text;
+            container.appendChild(userMsg);
+            
+            input.value = "";
+            container.scrollTop = container.scrollHeight;
+        }
+    </script>
+</body>
+</html>

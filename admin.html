@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الإدارة | منصة الأستاذ حسام للرياضيات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <nav class="bg-indigo-900 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <i class="fa-solid fa-graduation-cap text-2xl text-amber-400"></i>
+                <span class="font-bold text-lg">منصة الأستاذ حسام - لوحة تسيير الاشتراكات</span>
+            </div>
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <span class="text-sm bg-indigo-800 px-3 py-1 rounded-full">المشرف: حسام رزاقي</span>
+                <button onclick="logout()" class="text-red-300 hover:text-red-100 transition">
+                    <i class="fa-solid fa-right-from-bracket"></i> خروج
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border-r-4 border-indigo-600 flex justify-between items-center">
+                <div>
+                    <p class="text-gray-500 text-sm">إجمالي التلاميذ المسجلين</p>
+                    <h3 class="text-2xl font-bold text-gray-800" id="total-students">124</h3>
+                </div>
+                <i class="fa-solid fa-users text-3xl text-indigo-200"></i>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-r-4 border-emerald-500 flex justify-between items-center">
+                <div>
+                    <p class="text-gray-500 text-sm">الاشتراكات النشطة حالياً</p>
+                    <h3 class="text-2xl font-bold text-gray-800" id="active-subscriptions">87</h3>
+                </div>
+                <i class="fa-solid fa-circle-check text-3xl text-emerald-200"></i>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-r-4 border-amber-500 flex justify-between items-center">
+                <div>
+                    <p class="text-gray-500 text-sm">طلبات تجديد في الانتظار</p>
+                    <h3 class="text-2xl font-bold text-gray-800" id="pending-requests">12</h3>
+                </div>
+                <i class="fa-solid fa-hourglass-half text-3xl text-amber-200"></i>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center flex-wrap gap-4">
+                <h2 class="text-lg font-bold text-gray-800">قائمة التلاميذ وتعديل صلاحيات الوصول</h2>
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <input type="text" placeholder="بحث عن تلميذ..." class="border border-gray-300 px-4 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                        <i class="fa-solid fa-user-plus ml-1"></i> إضافة تلميذ يدوياً
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-right text-gray-600">
+                    <thead class="bg-gray-50 text-gray-700 text-xs uppercase font-semibold">
+                        <tr>
+                            <th class="px-6 py-4">اسم التلميذ</th>
+                            <th class="px-6 py-4">البريد الإلكتروني</th>
+                            <th class="px-6 py-4">المستوى الدراسي</th>
+                            <th class="px-6 py-4">تاريخ انتهاء الاشتراك</th>
+                            <th class="px-6 py-4">الحالة</th>
+                            <th class="px-6 py-4 text-center">تحديث المدة الزمنية</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 text-sm">
+                        <tr>
+                            <td class="px-6 py-4 font-medium text-gray-900">محمد بن يوسف</td>
+                            <td class="px-6 py-4">mohamed@gmail.com</td>
+                            <td class="px-6 py-4"><span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs">رابعة متوسط 4AM</span></td>
+                            <td class="px-6 py-4 font-mono text-gray-500">2026-08-15</td>
+                            <td class="px-6 py-4"><span class="bg-emerald-50 text-emerald-700 px-2 py-1 rounded text-xs font-semibold">نشط</span></td>
+                            <td class="px-6 py-4 flex justify-center space-x-2 space-x-reverse">
+                                <button onclick="extendSubscription('mohamed@gmail.com', 30)" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-1 rounded text-xs font-medium transition">+30 يوم</button>
+                                <button onclick="extendSubscription('mohamed@gmail.com', 90)" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-1 rounded text-xs font-medium transition">+3 أشهر</button>
+                                <button onclick="cancelSubscription('mohamed@gmail.com')" class="bg-red-50 hover:bg-red-100 text-red-600 px-2 py-1 rounded text-xs transition">إيقاف</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-medium text-gray-900">إيمان علوي</td>
+                            <td class="px-6 py-4">iman@gmail.com</td>
+                            <td class="px-6 py-4"><span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs">أولى متوسط 1AM</span></td>
+                            <td class="px-6 py-4 font-mono text-gray-500">2026-07-01</td>
+                            <td class="px-6 py-4"><span class="bg-red-50 text-red-700 px-2 py-1 rounded text-xs font-semibold">منتهي</span></td>
+                            <td class="px-6 py-4 flex justify-center space-x-2 space-x-reverse">
+                                <button onclick="extendSubscription('iman@gmail.com', 30)" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-1 rounded text-xs font-medium transition">+30 يوم</button>
+                                <button onclick="extendSubscription('iman@gmail.com', 90)" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-1 rounded text-xs font-medium transition">+3 أشهر</button>
+                                <button onclick="cancelSubscription('iman@gmail.com')" class="bg-red-50 hover:bg-red-100 text-red-600 px-2 py-1 rounded text-xs transition">إيقاف</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function extendSubscription(email, days) {
+            alert(`سيتم تمديد اشتراك التلميذ صاحب البريد: ${email} بمقدار ${days} يوم إضافي بنجاح.`);
+            // هنا يتم الربط البرمجي لتحديث حقل subscription_end_date في قواعد بيانات Supabase
+        }
+
+        function cancelSubscription(email) {
+            if (confirm(`هل أنت متأكد من رغبتك في إيقاف صلاحية وصول الحساب ${email} فوراً؟`)) {
+                alert(`تم تجميد صلاحيات الحساب بنجاح.`);
+                // هنا يتم تحديث الحقل في جدول Supabase ليصبح منتهياً
+            }
+        }
+
+        function logout() {
+            // استدعاء دالة تسجيل الخروج من auth.ts
+            alert("جاري تسجيل الخروج والعودة لصفحة تسجيل الدخول...");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

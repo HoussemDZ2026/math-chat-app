@@ -29,31 +29,31 @@
         </div>
 
         <!-- نموذج تسجيل الدخول -->
-        <form id="login-form" class="space-y-4" onsubmit="handleLogin(event)">
+        <form id="login-form" class="space-y-4">
             <div>
                 <label class="block text-xs text-gray-400 mb-1">البريد الإلكتروني</label>
-                <input type="email" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
+                <input type="email" id="login-email" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
             </div>
             <div>
                 <label class="block text-xs text-gray-400 mb-1">كلمة المرور</label>
-                <input type="password" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
+                <input type="password" id="login-password" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
             </div>
             <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 py-2.5 rounded-lg text-sm font-bold transition">دخول</button>
         </form>
 
         <!-- نموذج إنشاء حساب جديد -->
-        <form id="register-form" class="space-y-4 hidden-section" onsubmit="handleRegister(event)">
+        <form id="register-form" class="space-y-4 hidden-section">
             <div>
                 <label class="block text-xs text-gray-400 mb-1">الاسم واللقب</label>
-                <input type="text" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
+                <input type="text" id="register-name" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
             </div>
             <div>
                 <label class="block text-xs text-gray-400 mb-1">البريد الإلكتروني</label>
-                <input type="email" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
+                <input type="email" id="register-email" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
             </div>
             <div>
                 <label class="block text-xs text-gray-400 mb-1">كلمة المرور</label>
-                <input type="password" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
+                <input type="password" id="register-password" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
             </div>
             <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 py-2.5 rounded-lg text-sm font-bold transition">إنشاء الحساب</button>
         </form>
@@ -79,7 +79,6 @@
         <h3 class="text-xl font-bold mb-2">حسابك في انتظار التفعيل</h3>
         <p class="text-gray-400 text-sm mb-6">مرحباً بك! لقد قمت بتثبيت التطبيق بنجاح. لكن حسابك يحتاج إلى تفعيل من طرف الإدارة لكي تتمكن من استخدام دردشة الأستاذ حسام الذكية.</p>
         
-        <!-- رابط الواتساب برقمك مباشرة ورسالة مجهزة مسبقاً -->
         <a href="https://wa.me/213561150865?text=مرحبا%20أستاذ%20حسام،%20لقد%20سجلت%20في%20المنصة%20وأريد%20تفعيل%20حسابي" target="_blank" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold flex items-center justify-center space-x-2 space-x-reverse transition">
             <i class="fa-brands fa-whatsapp text-xl"></i>
             <span>تواصل مع الإدارة من أجل تفعيل حسابك</span>
@@ -89,7 +88,6 @@
 
     <!-- ================= 4. واجهة الدردشة بعد التفعيل ================= -->
     <div id="chat-interface" class="hidden-section flex-1 flex flex-col max-w-2xl w-full mx-auto bg-slate-800 shadow-xl border-x border-slate-700 h-screen">
-        <!-- شريط علوي يحتوي على عدد الأيام المتبقية -->
         <div class="bg-slate-900 p-4 border-b border-slate-700 flex justify-between items-center">
             <div class="flex items-center space-x-3 space-x-reverse">
                 <i class="fa-solid fa-circle-user text-3xl text-indigo-500"></i>
@@ -98,7 +96,6 @@
                     <span class="text-xs text-green-400 flex items-center"><span class="h-2 w-2 rounded-full bg-green-500 inline-block ml-1"></span>متصل الآن</span>
                 </div>
             </div>
-            <!-- عداد الأيام المتبقية للاشتراك -->
             <div class="bg-indigo-950 text-indigo-400 px-3 py-1 rounded-full text-xs font-semibold border border-indigo-800">
                 <i class="fa-solid fa-clock ml-1"></i> المتبقي: <span id="days-count">15</span> يوم
             </div>
@@ -133,9 +130,8 @@
         </a>
     </div>
 
-    <!-- كود إدارة التفاعلات والتنقل بين الواجهات -->
+    <!-- كود إدارة التفاعلات الأساسية والتنقل الشكلي بين الواجهات -->
     <script>
-        // التبديل بين نموذج الدخول ونموذج التسجيل
         function toggleAuthMode(mode) {
             const loginForm = document.getElementById('login-form');
             const registerForm = document.getElementById('register-form');
@@ -155,56 +151,17 @@
             }
         }
 
-        // عند إرسال نموذج إنشاء حساب جديد
-        function handleRegister(e) {
-            e.preventDefault();
-            document.getElementById('auth-section').classList.add('hidden-section');
-            document.getElementById('download-section').classList.remove('hidden-section');
-        }
-
-        // عند تثبيت التطبيق
         function simulateInstall() {
             document.getElementById('download-section').classList.add('hidden-section');
-            // نوجهه لشاشة الانتظار لأن الحساب غير مفعل من طرف الأستاذ حسام بعد
             document.getElementById('pending-section').classList.remove('hidden-section');
         }
 
-        // محاكاة تسجيل الدخول (لفحص التفعيل والأيام المتبقية)
-        function handleLogin(e) {
-            e.preventDefault();
-            document.getElementById('auth-section').classList.add('hidden-section');
-            
-            // محاكاة لحالة تفعيل الحساب: 
-            // غير مفعل = pending-section
-            // مفعل والاشتراك ساري = chat-interface
-            // منتهي الصلاحية = expired-section
-            
-            let accountStatus = "active"; // "pending", "active", "expired"
-            let daysRemaining = 12; // الأيام المتبقية
-
-            if (accountStatus === "pending") {
-                document.getElementById('pending-section').classList.remove('hidden-section');
-            } else if (accountStatus === "active") {
-                if (daysRemaining <= 0) {
-                    document.getElementById('expired-section').classList.remove('hidden-section');
-                } else {
-                    document.getElementById('days-count').innerText = daysRemaining;
-                    document.getElementById('chat-interface').classList.remove('hidden-section');
-                }
-            } else {
-                document.getElementById('expired-section').classList.remove('hidden-section');
-            }
-        }
-
-        // إرسال رسالة في الدردشة
         function sendMessage() {
             const input = document.getElementById('message-input');
             const text = input.value.trim();
             if (!text) return;
 
             const container = document.getElementById('chat-container');
-            
-            // رسالة التلميذ
             const userMsg = document.createElement('div');
             userMsg.className = "bg-indigo-600 p-3 rounded-xl text-sm text-white max-w-[85%] self-end ml-auto";
             userMsg.innerText = text;
@@ -212,6 +169,69 @@
             
             input.value = "";
             container.scrollTop = container.scrollHeight;
+        }
+    </script>
+
+    <!-- ================= ربط وتفعيل Supabase الفعلي للنظام ================= -->
+    <script type="module">
+        // استدعاء الدوال من الملف الذي قمت بإنشائه في الخطوة السابقة
+        // ملاحظة: تأكد أن اسم الملف يطابق تماماً امتداد ملفك سواء كان auth.ts أو auth.js
+        import { signUpStudent, signInStudent } from './auth.ts';
+
+        // 1. معالجة إنشاء حساب تلميذ جديد حقيقي
+        const regForm = document.getElementById('register-form');
+        if (regForm) {
+            regForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+
+                const { data, error } = await signUpStudent(email, password);
+                if (error) {
+                    alert('خطأ أثناء إنشاء الحساب: ' + error.message);
+                } else {
+                    // الانتقال لواجهة التثبيت بعد نجاح التسجيل في Supabase
+                    document.getElementById('auth-section').classList.add('hidden-section');
+                    document.getElementById('download-section').classList.remove('hidden-section');
+                }
+            });
+        }
+
+        // 2. معالجة تسجيل دخول تلميذ حقيقي والتحقق من حالته
+        const logForm = document.getElementById('login-form');
+        if (logForm) {
+            logForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                const { data, error } = await signInStudent(email, password);
+                if (error) {
+                    alert('خطأ في تسجيل الدخول: ' + error.message);
+                } else {
+                    document.getElementById('auth-section').classList.add('hidden-section');
+                    
+                    /* 
+                       هنا نحدد حالة التلميذ؛ مستقبلاً يمكنك قراءة هذه البيانات من جدول الحسابات،
+                       أما الآن فالنظام سيوجهه مباشرة إلى واجهة الشات بناءً على تفعيلك له.
+                    */
+                    let accountStatus = "active"; // "pending", "active", "expired"
+                    let daysRemaining = 15; 
+
+                    if (accountStatus === "pending") {
+                        document.getElementById('pending-section').classList.remove('hidden-section');
+                    } else if (accountStatus === "active") {
+                        if (daysRemaining <= 0) {
+                            document.getElementById('expired-section').classList.remove('hidden-section');
+                        } else {
+                            document.getElementById('days-count').innerText = daysRemaining;
+                            document.getElementById('chat-interface').classList.remove('hidden-section');
+                        }
+                    } else {
+                        document.getElementById('expired-section').classList.remove('hidden-section');
+                    }
+                }
+            });
         }
     </script>
 </body>

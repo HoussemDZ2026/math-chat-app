@@ -1,3 +1,4 @@
+sb_publishable_c4kC3SkqWwkmknTT7u9j8Q_-eKnEx4o
 import { createClient, User } from '@supabase/supabase-base-js';
 
 // تهيئة عميل Supabase باستخدام متغيرات البيئة الحساسة

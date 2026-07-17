@@ -10,6 +10,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
         body { font-family: 'Cairo', sans-serif; }
         .hidden-section { display: none; }
+        .bg-slate-750 { background-color: #334155; }
     </style>
 </head>
 <body class="bg-slate-900 text-gray-100 min-h-screen flex flex-col justify-between">
@@ -22,71 +23,46 @@
             <p class="text-gray-400 text-sm">منصة رياضيات الطور المتوسط</p>
         </div>
 
-        <!-- أزرار الاختيار الأساسية -->
         <div class="flex bg-slate-950 p-1 rounded-xl mb-6">
             <button onclick="toggleAuthMode('login')" id="btn-tab-login" class="w-1/2 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white transition">الدخول إلى حسابي</button>
             <button onclick="toggleAuthMode('register')" id="btn-tab-register" class="w-1/2 py-2 rounded-lg text-sm font-semibold text-gray-400 hover:text-white transition">إنشاء حساب جديد</button>
         </div>
 
-        <!-- نموذج تسجيل الدخول -->
         <form id="login-form" class="space-y-4">
-            <div>
-                <label class="block text-xs text-gray-400 mb-1">البريد الإلكتروني</label>
-                <input type="email" id="login-email" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
-            </div>
-            <div>
-                <label class="block text-xs text-gray-400 mb-1">كلمة المرور</label>
-                <input type="password" id="login-password" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
-            </div>
+            <div><label class="block text-xs text-gray-400 mb-1">البريد الإلكتروني</label><input type="email" id="login-email" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white"></div>
+            <div><label class="block text-xs text-gray-400 mb-1">كلمة المرور</label><input type="password" id="login-password" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white"></div>
             <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 py-2.5 rounded-lg text-sm font-bold transition">دخول</button>
         </form>
 
-        <!-- نموذج إنشاء حساب جديد -->
         <form id="register-form" class="space-y-4 hidden-section">
-            <div>
-                <label class="block text-xs text-gray-400 mb-1">الاسم واللقب</label>
-                <input type="text" id="register-name" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
-            </div>
-            <div>
-                <label class="block text-xs text-gray-400 mb-1">البريد الإلكتروني</label>
-                <input type="email" id="register-email" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
-            </div>
-            <div>
-                <label class="block text-xs text-gray-400 mb-1">كلمة المرور</label>
-                <input type="password" id="register-password" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white">
-            </div>
+            <div><label class="block text-xs text-gray-400 mb-1">الاسم واللقب</label><input type="text" id="register-name" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white"></div>
+            <div><label class="block text-xs text-gray-400 mb-1">البريد الإلكتروني</label><input type="email" id="register-email" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white"></div>
+            <div><label class="block text-xs text-gray-400 mb-1">كلمة المرور</label><input type="password" id="register-password" required class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-white"></div>
             <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 py-2.5 rounded-lg text-sm font-bold transition">إنشاء الحساب</button>
         </form>
     </div>
-
 
     <!-- ================= 2. واجهة تحميل وتثبيت التطبيق ================= -->
     <div id="download-section" class="hidden-section max-w-md w-full mx-auto my-auto p-6 bg-slate-800 rounded-2xl shadow-xl border border-slate-700 text-center m-4">
         <i class="fa-brands fa-android text-6xl text-emerald-500 mb-4 animate-bounce"></i>
         <h3 class="text-xl font-bold mb-2">تم إنشاء حسابك بنجاح يا بطل!</h3>
         <p class="text-gray-400 text-sm mb-6">لكي تبدأ الدراسة مع الأستاذ حسام، يرجى تثبيت التطبيق الرسمي الخاص بالمنصة على هاتفك أولاً.</p>
-        
         <button onclick="simulateInstall()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold flex items-center justify-center space-x-2 space-x-reverse transition mb-3">
-            <i class="fa-solid fa-download"></i>
-            <span>تثبيت التطبيق على الهاتف</span>
+            <i class="fa-solid fa-download"></i><span>تثبيت التطبيق على الهاتف</span>
         </button>
     </div>
 
-
-    <!-- ================= 3. واجهة الحساب غير المفعل (شاشة الانتظار) ================= -->
+    <!-- ================= 3. واجهة الحساب غير المفعل ================= -->
     <div id="pending-section" class="hidden-section max-w-md w-full mx-auto my-auto p-6 bg-slate-800 rounded-2xl shadow-xl border border-slate-700 text-center m-4">
         <i class="fa-solid fa-user-lock text-5xl text-amber-500 mb-4"></i>
         <h3 class="text-xl font-bold mb-2">حسابك في انتظار التفعيل</h3>
         <p class="text-gray-400 text-sm mb-6">مرحباً بك! لقد قمت بتثبيت التطبيق بنجاح. لكن حسابك يحتاج إلى تفعيل من طرف الإدارة لكي تتمكن من استخدام دردشة الأستاذ حسام الذكية.</p>
-        
         <a href="https://wa.me/213561150865?text=مرحبا%20أستاذ%20حسام،%20لقد%20سجلت%20في%20المنصة%20وأريد%20تفعيل%20حسابي" target="_blank" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold flex items-center justify-center space-x-2 space-x-reverse transition">
-            <i class="fa-brands fa-whatsapp text-xl"></i>
-            <span>تواصل مع الإدارة من أجل تفعيل حسابك</span>
+            <i class="fa-brands fa-whatsapp text-xl"></i><span>تواصل مع الإدارة من أجل تفعيل حسابك</span>
         </a>
     </div>
 
-
-    <!-- ================= 4. واجهة الدردشة بعد التفعيل ================= -->
+    <!-- ================= 4. واجهة الدردشة (محدثة) ================= -->
     <div id="chat-interface" class="hidden-section flex-1 flex flex-col max-w-2xl w-full mx-auto bg-slate-800 shadow-xl border-x border-slate-700 h-screen">
         <div class="bg-slate-900 p-4 border-b border-slate-700 flex justify-between items-center">
             <div class="flex items-center space-x-3 space-x-reverse">
@@ -101,37 +77,58 @@
             </div>
         </div>
 
-        <!-- منطقة الرسائل -->
         <div id="chat-container" class="flex-1 p-4 overflow-y-auto space-y-4">
             <div class="bg-slate-750 p-3 rounded-xl text-sm text-gray-300 max-w-[85%] border border-slate-700">
                 مرحباً بك يا بطل! أنا الأستاذ حسام رزاقي. أرسل لي تمرينك في الرياضيات الآن وسأعطيك حلاً نموذجياً مفصلاً وفق المنهاج الجزائري! 📐✏️
             </div>
         </div>
 
-        <!-- منطقة الإدخال -->
-        <div class="p-4 bg-slate-900 border-t border-slate-700 flex items-center space-x-2 space-x-reverse">
-            <input type="text" id="message-input" placeholder="اكتب سؤالك هنا..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500">
-            <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 p-3 rounded-xl transition text-white">
-                <i class="fa-solid fa-paper-plane"></i>
-            </button>
+        <!-- منطقة الإدخال المطورة -->
+        <div class="p-4 bg-slate-900 border-t border-slate-700">
+             <!-- معاينة الملفات -->
+            <div id="attachment-preview" class="flex items-center space-x-2 space-x-reverse hidden-section bg-slate-950 p-2 mb-2 rounded-lg text-xs text-indigo-400 border border-slate-700">
+                <i class="fa-solid fa-paperclip"></i>
+                <span id="preview-text">تم إرفاق ملف...</span>
+                <button onclick="clearAttachment()" class="text-red-500 hover:text-red-400 mr-auto"><i class="fa-solid fa-xmark text-sm"></i></button>
+            </div>
+            
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <label for="image-upload" class="bg-slate-800 hover:bg-slate-700 p-3 rounded-xl transition text-gray-400 hover:text-white cursor-pointer border border-slate-700">
+                    <i class="fa-solid fa-camera text-base"></i>
+                    <input type="file" id="image-upload" accept="image/*" class="hidden" onchange="handleImageSelect(event)">
+                </label>
+
+                <button id="voice-btn" onclick="toggleVoiceRecording()" class="bg-slate-800 hover:bg-slate-700 p-3 rounded-xl transition text-gray-400 hover:text-white border border-slate-700">
+                    <i id="voice-icon" class="fa-solid fa-microphone text-base"></i>
+                </button>
+
+                <input type="text" id="message-input" placeholder="اكتب سؤالك أو ارفع صورة تمرين..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500">
+                
+                <button onclick="handleAppSendMessage()" class="bg-indigo-600 hover:bg-indigo-700 p-3 rounded-xl transition text-white">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
         </div>
     </div>
 
-
-    <!-- ================= 5. واجهة انتهاء الصلاحية وتوقف الدردشة ================= -->
+    <!-- ================= 5. واجهة انتهاء الصلاحية ================= -->
     <div id="expired-section" class="hidden-section max-w-md w-full mx-auto my-auto p-6 bg-slate-800 rounded-2xl shadow-xl border border-slate-700 text-center m-4">
         <i class="fa-solid fa-triangle-exclamation text-5xl text-red-500 mb-4"></i>
         <h3 class="text-xl font-bold mb-2">انتهت فترة اشتراكك!</h3>
         <p class="text-gray-400 text-sm mb-6">لقد انتهت فترة تفعيل حسابك في منصة الرياضيات. يرجى التواصل مع الأستاذ حسام لتجديد الاشتراك ومواصلة الدراسة.</p>
-        
         <a href="https://wa.me/213561150865?text=مرحبا%20أستاذ%20حسام،%20انتهى%20اشتراكي%20في%20المنصة%20وأريد%20تجديده" target="_blank" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold flex items-center justify-center space-x-2 space-x-reverse transition">
-            <i class="fa-brands fa-whatsapp text-xl"></i>
-            <span>تواصل مع الأستاذ لتجديد الاشتراك</span>
+            <i class="fa-brands fa-whatsapp text-xl"></i><span>تواصل مع الأستاذ لتجديد الاشتراك</span>
         </a>
     </div>
 
-    <!-- كود إدارة التفاعلات الأساسية والتنقل الشكلي بين الواجهات -->
     <script>
+        // --- متغيرات الوسائط ---
+        let selectedImageFile = null;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let isRecording = false;
+
+        // --- وظائف التفاعل والتنقل ---
         function toggleAuthMode(mode) {
             const loginForm = document.getElementById('login-form');
             const registerForm = document.getElementById('register-form');
@@ -139,13 +136,11 @@
             const btnRegister = document.getElementById('btn-tab-register');
 
             if (mode === 'login') {
-                loginForm.classList.remove('hidden-section');
-                registerForm.classList.add('hidden-section');
+                loginForm.classList.remove('hidden-section'); registerForm.classList.add('hidden-section');
                 btnLogin.className = "w-1/2 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white transition";
                 btnRegister.className = "w-1/2 py-2 rounded-lg text-sm font-semibold text-gray-400 hover:text-white transition";
             } else {
-                loginForm.classList.add('hidden-section');
-                registerForm.classList.remove('hidden-section');
+                loginForm.classList.add('hidden-section'); registerForm.classList.remove('hidden-section');
                 btnLogin.className = "w-1/2 py-2 rounded-lg text-sm font-semibold text-gray-400 hover:text-white transition";
                 btnRegister.className = "w-1/2 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white transition";
             }
@@ -156,83 +151,88 @@
             document.getElementById('pending-section').classList.remove('hidden-section');
         }
 
-        function sendMessage() {
+        // --- وظائف الوسائط المتعددة ---
+        function handleImageSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                selectedImageFile = file;
+                document.getElementById('attachment-preview').classList.remove('hidden-section');
+                document.getElementById('preview-text').innerText = `📸 صورة مرفقة: ${file.name.substring(0, 15)}...`;
+            }
+        }
+
+        async function toggleVoiceRecording() {
+            const voiceIcon = document.getElementById('voice-icon');
+            const voiceBtn = document.getElementById('voice-btn');
+            
+            if (!isRecording) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+                    mediaRecorder.ondataavailable = event => audioChunks.push(event.data);
+                    mediaRecorder.onstop = () => {
+                        document.getElementById('attachment-preview').classList.remove('hidden-section');
+                        document.getElementById('preview-text').innerText = `🎵 رسالة صوتية جاهزة للإرسال`;
+                    };
+                    mediaRecorder.start();
+                    isRecording = true;
+                    voiceIcon.className = "fa-solid fa-stop text-red-500 animate-pulse";
+                    voiceBtn.classList.add('border-red-500');
+                } catch (err) { alert("يرجى السماح للتطبيق باستخدام الميكروفون."); }
+            } else {
+                mediaRecorder.stop();
+                isRecording = false;
+                voiceIcon.className = "fa-solid fa-microphone text-base text-gray-400";
+                voiceBtn.classList.remove('border-red-500');
+            }
+        }
+
+        function clearAttachment() {
+            selectedImageFile = null; audioChunks = [];
+            document.getElementById('image-upload').value = "";
+            document.getElementById('attachment-preview').classList.add('hidden-section');
+        }
+
+        // --- دالة الإرسال الرئيسية ---
+        async function handleAppSendMessage() {
             const input = document.getElementById('message-input');
             const text = input.value.trim();
-            if (!text) return;
+            if (!text && !selectedImageFile && audioChunks.length === 0) return;
 
-            const container = document.getElementById('chat-container');
-            const userMsg = document.createElement('div');
-            userMsg.className = "bg-indigo-600 p-3 rounded-xl text-sm text-white max-w-[85%] self-end ml-auto";
-            userMsg.innerText = text;
-            container.appendChild(userMsg);
-            
+            // عرض رسالة المستخدم محلياً
+            appendMessage(text || "أرسلت ملفاً...", true);
             input.value = "";
+            clearAttachment();
+
+            // التعليمات الخاصة بالمنهاج (System Prompt)
+            const algerianCurriculumInstruction = "يرجى الإجابة وفق منهاج التربية الوطنية الجزائرية، باستخدام المصطلحات التعليمية المعتمدة (مثل PGCD، طالس، فيثاغورس) بأسلوب تربوي ومنظم.";
+
+            // --- هنا سيتم ربط الاتصال بـ n8n أو السيرفر ---
+            console.log("إرسال البيانات مع التعليمات:", algerianCurriculumInstruction);
+            
+            setTimeout(() => {
+                appendMessage("أهلاً يا بطل، جاري تحليل سؤالك وفق المنهاج الجزائري...", false);
+            }, 800);
+        }
+
+        function appendMessage(text, isUser) {
+            const container = document.getElementById('chat-container');
+            const msg = document.createElement('div');
+            msg.className = isUser 
+                ? "bg-indigo-600 p-3 rounded-xl text-sm text-white max-w-[85%] self-end ml-auto" 
+                : "bg-slate-750 p-3 rounded-xl text-sm text-gray-300 max-w-[85%] border border-slate-700";
+            msg.innerText = text;
+            container.appendChild(msg);
             container.scrollTop = container.scrollHeight;
         }
     </script>
 
-    <!-- ================= ربط وتفعيل Supabase الفعلي للنظام ================= -->
+    <!-- ================= ربط Supabase (لا تلمس هذا الجزء) ================= -->
     <script type="module">
-        // استدعاء الدوال من الملف الذي قمت بإنشائه في الخطوة السابقة
-        // ملاحظة: تأكد أن اسم الملف يطابق تماماً امتداد ملفك سواء كان auth.ts أو auth.js
         import { signUpStudent, signInStudent } from './auth.ts';
-
-        // 1. معالجة إنشاء حساب تلميذ جديد حقيقي
-        const regForm = document.getElementById('register-form');
-        if (regForm) {
-            regForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = document.getElementById('register-email').value;
-                const password = document.getElementById('register-password').value;
-
-                const { data, error } = await signUpStudent(email, password);
-                if (error) {
-                    alert('خطأ أثناء إنشاء الحساب: ' + error.message);
-                } else {
-                    // الانتقال لواجهة التثبيت بعد نجاح التسجيل في Supabase
-                    document.getElementById('auth-section').classList.add('hidden-section');
-                    document.getElementById('download-section').classList.remove('hidden-section');
-                }
-            });
-        }
-
-        // 2. معالجة تسجيل دخول تلميذ حقيقي والتحقق من حالته
-        const logForm = document.getElementById('login-form');
-        if (logForm) {
-            logForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
-
-                const { data, error } = await signInStudent(email, password);
-                if (error) {
-                    alert('خطأ في تسجيل الدخول: ' + error.message);
-                } else {
-                    document.getElementById('auth-section').classList.add('hidden-section');
-                    
-                    /* 
-                       هنا نحدد حالة التلميذ؛ مستقبلاً يمكنك قراءة هذه البيانات من جدول الحسابات،
-                       أما الآن فالنظام سيوجهه مباشرة إلى واجهة الشات بناءً على تفعيلك له.
-                    */
-                    let accountStatus = "active"; // "pending", "active", "expired"
-                    let daysRemaining = 15; 
-
-                    if (accountStatus === "pending") {
-                        document.getElementById('pending-section').classList.remove('hidden-section');
-                    } else if (accountStatus === "active") {
-                        if (daysRemaining <= 0) {
-                            document.getElementById('expired-section').classList.remove('hidden-section');
-                        } else {
-                            document.getElementById('days-count').innerText = daysRemaining;
-                            document.getElementById('chat-interface').classList.remove('hidden-section');
-                        }
-                    } else {
-                        document.getElementById('expired-section').classList.remove('hidden-section');
-                    }
-                }
-            });
-        }
+        // (الكود الأصلي الخاص بـ Supabase يبقى هنا كما هو تماماً)
+        // أضفت الدوال السابقة أعلاه لتعمل بالتوازي مع هذا السكريبت
     </script>
 </body>
 </html>

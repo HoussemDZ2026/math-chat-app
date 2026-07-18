@@ -3,6 +3,10 @@
  * تدير هذه الشيفرة إرسال واستقبال الرسائل، رفع ملفات الصوت والصور، والتحقق من الاشتراكات.
  */
 
+// إعدادات الاتصال بـ Supabase Edge Function
+const SUPABASE_FUNC_URL = "https://odpudbmhjpancdgzcuhk.supabase.co/functions/v1/rapid-processor";
+const SUPABASE_ANON_KEY = "sb_publishable_c4kC3SkqWwkmknTT7u9j8Q_-eKnEx4o";
+
 // تهيئة واجهة المستخدم عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", () => {
     initChat();
@@ -63,20 +67,30 @@ async function handleSendMessage() {
     const typingIndicator = showTypingIndicator();
 
     try {
-        // 3. إرسال السؤال إلى خادم الخلفية (Backend) الذي يشغل solve.js
-        const response = await fetch("/api/solve", {
+        // 3. إرسال السؤال إلى Supabase Edge Function مباشرة
+        const response = await fetch(SUPABASE_FUNC_URL, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "apikey": SUPABASE_ANON_KEY,
+                "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
             },
-            body: JSON.stringify({ question: text })
+            body: JSON.stringify({ message: text }) // الدالة تستقبل متغير باسم message
         });
         
         const data = await response.json();
         
         // إزالة مؤشر الكتابة وعرض رد الأستاذ
         typingIndicator.remove();
-        appendMessage("bot", data.answer);
+        
+        if (data.answer) {
+            appendMessage("bot", data.answer);
+        } else if (data.error) {
+            appendMessage("bot", "حدث خطأ أثناء معالجة السؤال، يرجى المحاولة مجددًا.");
+            console.error("Function error:", data.error);
+        } else {
+            appendMessage("bot", "لم أتمكن من فهم الإجابة بشكل صحيح، أعد صياغة السؤال يا بني.");
+        }
     } catch (error) {
         typingIndicator.remove();
         appendMessage("bot", "عذراً يا بني، حدث خطأ في الاتصال بالأستاذ حسام. تأكد من اتصالك بالإنترنت!");
